@@ -7,6 +7,7 @@ import com.elias.livraria_api.web.controller.dto.UserCreateDTO;
 import com.elias.livraria_api.web.controller.dto.UserResponseDTO;
 import com.elias.livraria_api.web.controller.dto.UserUpdatePasswordDTO;
 import com.elias.livraria_api.web.controller.dto.mapper.UserMapper;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(@RequestBody UserCreateDTO request) {
+    public ResponseEntity<UserResponseDTO> createUser(@Valid @RequestBody UserCreateDTO request) {
         System.out.println(request.toString());
         User user = userService.save(userMapper.toUser(request));
         var response = userMapper.toDTO(user);
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody UserUpdatePasswordDTO request) {
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody UserUpdatePasswordDTO request) {
         User user = userService.editPassword(id, request.currentPassword(), request.newPassword(), request.confirmPassword());
         var response =  userMapper.toDTO(user);
         return ResponseEntity.noContent().build();
