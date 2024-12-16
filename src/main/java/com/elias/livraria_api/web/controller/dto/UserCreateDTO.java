@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 public record UserCreateDTO(
         @NotBlank
-        String name,
+        String username,
         @NotBlank
         @Email(message = "formato de e-mail esta invalido.", regexp = "^[a-z0-9.+-]+@[a-z0-9.-]+\\.[a-z]{2,}$")
         String email,

@@ -13,7 +13,7 @@ public class UserMapper {
 
     public User toUser(UserCreateDTO userCreateDTO) {
         User user = new User();
-        user.setName(userCreateDTO.name());
+        user.setUsername(userCreateDTO.username());
         user.setEmail(userCreateDTO.email());
         user.setPassword(userCreateDTO.password());
         user.setRole(User.Role.valueOf(userCreateDTO.role()));
@@ -22,7 +22,7 @@ public class UserMapper {
 
     public UserResponseDTO toDTO(User user) {
         var role = user.getRole().name().substring("ROLE_".length());
-        return new UserResponseDTO(user.getId(), user.getName(), user.getEmail(), role);
+        return new UserResponseDTO(user.getId(), user.getUsername(), user.getEmail(), role);
     }
 
     public List<UserResponseDTO> toListDTO(List<User> users) {

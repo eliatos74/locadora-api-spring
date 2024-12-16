@@ -20,8 +20,8 @@ public class User implements Serializable {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false, length = 100)
-    private String name;
+    @Column(name = "username", nullable = false, length = 100)
+    private String username;
 
     @Column(name = "email", nullable = false, unique = true, length = 255)
     private String email;
